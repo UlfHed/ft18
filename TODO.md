@@ -1,5 +1,5 @@
 ## Metoder
-- [ ] En funktion som hittar alla filer i en katalog (eller på hela hårddisken). Inputen till funktionen är en path till en viss katalog man vill lista ut, t.ex. ”C:/nina/java”. Funktionen skall skapa en tupler eller lista med alla filer som hittas. Tänk på att du måste gå ner i alla underkataloger som finns i respektive katalog mm.
+- [] En funktion som hittar alla filer i en katalog (eller på hela hårddisken). Inputen till funktionen är en path till en viss katalog man vill lista ut, t.ex. ”C:/nina/java”. Funktionen skall skapa en tupler eller lista med alla filer som hittas. Tänk på att du måste gå ner i alla underkataloger som finns i respektive katalog mm.
 
 - [ ] En funktion som kan hitta och lista ut alla filer av en viss typ (alltså filerna som har en viss ändelse pdf, txt, doc, ljudfiler, bildfiler, mm). Indata till funktionen är just filändelsen och mappen du skall leta i. Utdata är en lista med alla filer med just den filändelsen.
 
