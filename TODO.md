@@ -1,7 +1,3 @@
-# FT18
-MiniProject DI2006 - Forensic Tool
-
-
 ## Metoder
 - [ ] En funktion som hittar alla filer i en katalog (eller på hela hårddisken). Inputen till funktionen är en path till en viss katalog man vill lista ut, t.ex. ”C:/nina/java”. Funktionen skall skapa en tupler eller lista med alla filer som hittas. Tänk på att du måste gå ner i alla underkataloger som finns i respektive katalog mm.
 
