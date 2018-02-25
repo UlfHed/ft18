@@ -2,25 +2,25 @@
 MiniProject DI2006 - Forensic Tool
 
 ## Metoder
-- [ ] En funktion som hittar alla filer i en katalog (eller på hela hårddisken). Inputen till funktionen är en path till en viss katalog man vill lista ut, t.ex. ”C:/nina/java”. Funktionen skall skapa en tupler eller lista med alla filer som hittas. Tänk på att du måste gå ner i alla underkataloger som finns i respektive katalog mm.
+- [x] En funktion som hittar alla filer i en katalog (eller på hela hårddisken). Inputen till funktionen är en path till en viss katalog man vill lista ut, t.ex. ”C:/nina/java”. Funktionen skall skapa en tupler eller lista med alla filer som hittas. Tänk på att du måste gå ner i alla underkataloger som finns i respektive katalog mm.
 
-- [ ] En funktion som kan hitta och lista ut alla filer av en viss typ (alltså filerna som har en viss ändelse pdf, txt, doc, ljudfiler, bildfiler, mm). Indata till funktionen är just filändelsen och mappen du skall leta i. Utdata är en lista med alla filer med just den filändelsen.
+- [x] En funktion som kan hitta och lista ut alla filer av en viss typ (alltså filerna som har en viss ändelse pdf, txt, doc, ljudfiler, bildfiler, mm). Indata till funktionen är just filändelsen och mappen du skall leta i. Utdata är en lista med alla filer med just den filändelsen.
 
-- [ ] En funktion som söker efter en viss information i en viss
+- [x] En funktion som söker efter en viss information i en viss
 typ av fil. T.ex. namn, personnummer, mm i textfiler.
 Funktionen returnerar alla filnamn där filerna innehåller
 respektive information.
 
-- [ ] För vissa typer av filer är det svårt att läsa
+- [x] För vissa typer av filer är det svårt att läsa
 innehållet. Ta reda på om det inte finns program som
 konverterar dessa filer så att du sedan kan hitta
 information. T.ex. pdf filer kan konverteras till ps
 innan läsning.
 
-- [ ] En funktion som söker efter modifierade filer senast ett
+- [x] En funktion som söker efter modifierade filer senast ett
 viss datum
 
-- [ ] En funktion som kryptetar filer. Du skall kunna kryptera
+- [x] En funktion som kryptetar filer. Du skall kunna kryptera
 och dekryptera filer. För denna kryptering skall du
 använda datastrukturen Dictionary( kap 9) på följande
 sätt:
@@ -31,7 +31,7 @@ codes= {’A’: ’p’, ’B’: ’7’, ’C’: ’#’ …… ’a’: ’
 Med detta exempel bokstaven ” A” kommer att ersättas vid
 kryptering med ”p” osv.
 
-- [ ] Filanalys. Datafiler är oftast mycket stora. Många gånger
+- [x] Filanalys. Datafiler är oftast mycket stora. Många gånger
 i forensiskt arbete vill man kunna se skillnader mellan
 innehållet i två filer eller hitta en fil som är närmast
 likt någon annan fil som man har som undersökningsfil. I
