@@ -44,12 +44,12 @@ inte i A. Du kan också visualisera skillnaden på annat
 sätt.
 
 ## Interface
-- [ ] CLI
+- [x] CLI
 - [ ] GUI
 
 ## Extra
 ### HashSet
-- [ ] Hashset är något som används flitigt inom IT-forensiskt
+- [x] Hashset är något som används flitigt inom IT-forensiskt
 arbete. Ett hashset är en fil som innehåller hashsummor
 för olika typer av filer, dessa filer kan vara filer som
 kan anses suspekta eller så kan det vara kända ofarliga
@@ -64,7 +64,7 @@ väljer kända ofarliga filer så kan ni välja att inte
 skriva ut dessa eller markera dessa på något annat sätt.
 
 ### Hårdvaru-mjukvaro egenskaper
-- [ ] Inom IT-forensik är det viktigt att dokumentera så mycket
+- [x] Inom IT-forensik är det viktigt att dokumentera så mycket
 som möjligt. Detta görs främst för att kunna återskapa
 utvinningen och kunna bevisa att allt gjordes enligt alla
 konstens regler. Det kan därför vara bra att ta fram alla
