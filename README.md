@@ -45,7 +45,7 @@ sätt.
 
 ## Interface
 - [x] CLI
-- [ ] GUI
+- [x] GUI
 
 ## Extra
 ### HashSet
