@@ -48,8 +48,7 @@ def main():
         if arg.lower() in ['txt', 'text', 'cli']:
             cli.main_cli()
         elif arg.lower() == 'gui':
-            print('')
-            print('Funktion ej ännu tillgänglig')
+            gui.main_gui()
         else:
             print('')
             print('Följande argument tillgängliga:')

@@ -21,7 +21,7 @@ def menu_welcome():
     print('#     CLI - Forensic Tool - DI2006      #')
     print('#     Alternativ:                       #')
     print('#     1. Se funktioner.                 #')
-    print('#     2. Avsluta program.               #')
+    print('#     2. Tillbaka.                      #')
     print('# ' * 21)
 
 def menu_hash():
@@ -160,7 +160,12 @@ def tool_3():
                 except:
                     print('Var god ange vad som söks efter.')
 
-            files = ftlib.find_info_in_filetype(start_path, file_type, information)
+            try:
+                files = ftlib.find_info_in_filetype(start_path, file_type, information)
+            except:
+                print('Kan ej konvertera och läsa ' + str(file_type) + '. Detta program nyttjar följande program för konvertering av de filtyper som stöds: ')
+                print('.pdf: ps2ASCII, .doc: Antiword, docx: docx2txt, odt: odt2txt.')
+
             if files != []:
                 print('')
                 print('String:', information, 'återfinns i följande filer: ')
@@ -234,10 +239,12 @@ def tool_5():
                     break
                 except:
                     print('Var god ange fullständigt filnamn.')
-
-            ftlib.en_de_crypt(file_name, 'encrypt')
-            print('')
-            print(file_name + '.en återfinns i den mapp detta program körs.')
+            try:
+                ftlib.en_de_crypt(file_name, 'encrypt')
+                print('')
+                print(file_name + '.en återfinns i den mapp detta program körs.')
+            except:
+                print('Kan ej kryptera fil.')
 
         elif cho_tool5 == 2:
             print('Ange fullständigt filnamn på den krypterade filen.')
@@ -382,17 +389,31 @@ def tool_8():
         menu_generic()
         cho_tool8 = choice('2')
         if cho_tool8 == 1:
-            sysinfo = ftlib.get_hardware()
-            print('')
-            print('Användare:                 ', sysinfo[0])
-            print('Operativ system:           ', sysinfo[1])
-            print('Datornamn:                 ', sysinfo[2])
-            print('Utgåva:                    ', sysinfo[3])
-            print('Version:                   ', sysinfo[4])
-            print('Systemtyp:                 ', sysinfo[5])
-            print('Processor:                 ', sysinfo[6], 'CPU @', sysinfo[7], 'Ghz')
-            print('Installerat RAM:           ', round(sysinfo[8] / 1000), 'GB')
-            print('')
+            try:
+                sysinfo = ftlib.get_hardware()
+                print('')
+                print('Användare:                 ', sysinfo[0])
+                print('Operativ system:           ', sysinfo[1])
+                print('Datornamn:                 ', sysinfo[2])
+                print('Utgåva:                    ', sysinfo[3])
+                print('Version:                   ', sysinfo[4])
+                print('Systemtyp:                 ', sysinfo[5])
+                print('Processor:                 ', sysinfo[6], 'CPU @', sysinfo[7], 'Ghz')
+                print('Installerat RAM:           ', round(sysinfo[8] / 1000), 'GB')
+                print('')
+            except:
+                # Om man ej har psutil
+                sysinfo = ftlib.get_hardware_less()
+                print('')
+                print('Användare:                 ', 'N/A')
+                print('Operativ system:           ', sysinfo[0])
+                print('Datornamn:                 ', sysinfo[1])
+                print('Utgåva:                    ', sysinfo[2])
+                print('Version:                   ', sysinfo[3])
+                print('Systemtyp:                 ', sysinfo[4])
+                print('Processor:                 ', sysinfo[5], 'CPU @', 'N/A', 'Ghz')
+                print('Installerat RAM:           ', 'N/A', 'GB')
+                print('')
 
         elif cho_tool8 == 2:
             break

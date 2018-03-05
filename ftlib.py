@@ -21,7 +21,6 @@ def find_filetype(start_path, file_type):
     found = []
     if not file_type.startswith('.'):
         file_type = '.' + file_type
-    print(file_type)
     for path, dirs, files in os.walk(start_path):
         for filename in files:
             if filename.endswith(file_type):
@@ -68,6 +67,7 @@ def convert_docx(file_name):
     new_file = file_name + '.txt'
     f = open(new_file, 'w')
     f.write(doc)
+    f.close()
 
 def read_file_full(file_name):
     """
@@ -76,6 +76,7 @@ def read_file_full(file_name):
     """
     f = open(file_name, 'r')
     content = f.read()
+    f.close()
     return content
 
 def read_file_list(file_name):
@@ -101,7 +102,7 @@ def write_file_list(file_name, content):
     f = open(file_name, 'w')
     for i in content:
         f.write(i + '\n')
-    f.close
+    f.close()
 
 def read_and_find(file_name, information):
     """
@@ -148,7 +149,7 @@ def modified_date(path_file, m_date):
     t_modified = os.path.getmtime(path_file)
     if t_modified > m_date:
         date = time.strftime("%a, %d %b %Y %H:%M:%S %Z", time.localtime(t_modified))
-        output = path_file + ' modified last at: ' + date
+        output = path_file + ' ändrad senast: ' + date
         return output
 
 def convert_date_sec(given_date):
@@ -210,7 +211,7 @@ def en_de_crypt(file_name, mode):
             'ä': 'C', '8': '#', '(': 'J', 'O': 'P', 'c': '+', '+': 'S', 'C': '<',
             'q': '2', '>': 'L', 'x': 'V', ' ': ' ', '=': '-', '{': '§', ':': ',',
             '\'': '\'', ',': '}', '}': '.', '[': '@', ']': '£', '_': '^', '.': '*',
-            '-': '~'}
+            '-': '~', '*': 'ø', '"': 'æ', '\t': '\t', '\\': '\\'}
 
     if mode == 'encrypt':
         content = read_file_list(file_name)

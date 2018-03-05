@@ -88,7 +88,8 @@ def main_gui():
         try:
             files = ftlib.find_info_in_filetype(start_path, file_type, information)
         except:
-            textbox.insert(END, '\n' + 'Ogiltiga värden!')
+            textbox.insert(END, '\n' + 'Kan ej konvertera och läsa ' + str(file_type) + '. Detta program nyttjar följande program för konvertering av de filtyper som stöds: ')
+            textbox.insert(END, '\n' + '.pdf: ps2ASCII, .doc: Antiword, docx: docx2txt, odt: odt2txt.')
 
         if files != []:
             textbox.insert(END, '\n' + 'Del av string återfinns i följande filer: ')
@@ -105,7 +106,7 @@ def main_gui():
             ftlib.en_de_crypt(file_name, 'encrypt')
             textbox.insert(END, '\n' + file_name + '.en återfinns i den mapp detta program körs.')
         except:
-            textbox.insert(END, '\n' + 'Ogiltig filväg!')
+            textbox.insert(END, '\n' + 'Kan ej kryptera fil.')
 
     def tool_3_decrypt():
         # Fildekryptering
@@ -210,14 +211,13 @@ def main_gui():
             sysinfo = ftlib.get_hardware_less()
 
             textbox.insert(END, '\n' + 'Användare:         ' + 'N/A')
-            textbox.insert(END, '\n' + 'Operativ system:   ' + sysinfo[1])
-            textbox.insert(END, '\n' + 'Datornamn:         ' + sysinfo[2])
-            textbox.insert(END, '\n' + 'Utgåva:            ' + sysinfo[3])
-            textbox.insert(END, '\n' + 'Version:           ' + sysinfo[4])
-            textbox.insert(END, '\n' + 'Systemtyp:         ' + sysinfo[5])
-            textbox.insert(END, '\n' + 'Processor:         ' + sysinfo[6] + ' CPU @ ' + 'N/A' + ' Ghz')
+            textbox.insert(END, '\n' + 'Operativ system:   ' + sysinfo[0])
+            textbox.insert(END, '\n' + 'Datornamn:         ' + sysinfo[1])
+            textbox.insert(END, '\n' + 'Utgåva:            ' + sysinfo[2])
+            textbox.insert(END, '\n' + 'Version:           ' + sysinfo[3])
+            textbox.insert(END, '\n' + 'Systemtyp:         ' + sysinfo[4])
+            textbox.insert(END, '\n' + 'Processor:         ' + sysinfo[5] + ' CPU @ ' + 'N/A' + ' Ghz')
             textbox.insert(END, '\n' + 'Installerat RAM:   ' + 'N/A' + ' GB')
-
 
     root = Tk()
     root.title('Forensic Tool')
