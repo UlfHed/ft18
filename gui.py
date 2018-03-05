@@ -87,16 +87,17 @@ def main_gui():
 
         try:
             files = ftlib.find_info_in_filetype(start_path, file_type, information)
+
+            if files != []:
+                textbox.insert(END, '\n' + 'Del av string återfinns i följande filer: ')
+                for i in files:
+                    textbox.insert(END, '\n' + i)
+            else:
+                textbox.insert(END, '\n' + 'Ingen träff! Se över inmatade värden.')
+
         except:
             textbox.insert(END, '\n' + 'Kan ej konvertera och läsa ' + str(file_type) + '. Detta program nyttjar följande program för konvertering av de filtyper som stöds: ')
             textbox.insert(END, '\n' + '.pdf: ps2ASCII, .doc: Antiword, docx: docx2txt, odt: odt2txt.')
-
-        if files != []:
-            textbox.insert(END, '\n' + 'Del av string återfinns i följande filer: ')
-            for i in files:
-                textbox.insert(END, '\n' + i)
-        else:
-            textbox.insert(END, '\n' + 'Ingen träff! Se över inmatade värden.')
 
     def tool_3_crypt():
         # Filkryptering
@@ -142,8 +143,7 @@ def main_gui():
         textbox.delete('1.0', END)
         file_name = t9_entry.get()
         try:
-            text = ftlib.read_file_full(file_name)
-            hsh = ftlib.get_hash(text)
+            hsh = ftlib.get_hash(file_name)
             textbox.insert(END, '\n' + file_name + ' har följande md5 hashvärde: ')
             textbox.insert(END, '\n' + str(hsh))
         except:
@@ -155,8 +155,7 @@ def main_gui():
         file_name = t9_entry.get()
         known_hsh = t10_entry.get()
         try:
-            text = ftlib.read_file_full(file_name)
-            hsh = ftlib.get_hash(text)
+            hsh = ftlib.get_hash(file_name)
             if ftlib.eval_hash(hsh, known_hsh) == True:
                 textbox.insert(END, '\n' + 'True! Hashvärde av båda filer är identiska.')
             elif ftlib.eval_hash(hsh, known_hsh) == False:
@@ -170,8 +169,7 @@ def main_gui():
         file_name = t9_entry.get()
         file_name_hashes = t11_entry.get()
         try:
-            text = ftlib.read_file_full(file_name)
-            hsh = str(ftlib.get_hash(text))
+            hsh = str(ftlib.get_hash(file_name))
             hashes = ftlib.read_file_list(file_name_hashes)
             found_hashes = []
             # Görs på detta vis med found_hashes till skäl av formatering.
@@ -273,7 +271,7 @@ def main_gui():
     docx = IntVar()
     odt = IntVar()
 
-    Label(f2, text = "Absolut filväg till mapp: ").grid(row = 0, sticky = W)
+    Label(f2, text = "Filväg till mapp: ").grid(row = 0, sticky = W)
     t1_entry = Entry(f2)
     t1_entry.grid(row = 1, sticky = W)
 
@@ -294,7 +292,7 @@ def main_gui():
 
     # sida 3: text i fil
     Label(f3, text = "Kan endast konvertera: .pdf, .doc, .docx, .odt").grid(row = 0, sticky = W)
-    Label(f3, text = "Absolut filväg till mapp: ").grid(row = 1, sticky = W)
+    Label(f3, text = "Filväg till mapp: ").grid(row = 1, sticky = W)
     t3_entry = Entry(f3)
     t3_entry.grid(row = 2, sticky = W)
 
@@ -314,7 +312,7 @@ def main_gui():
 
     # sida 4: Filkryptering
     Label(f4, text = "Kan endast dekryptera fil av ändelse: .de").grid(row = 2, sticky = W)
-    Label(f4, text = "Absolut filväg: ").grid(row = 0, sticky = W)
+    Label(f4, text = "Filväg: ").grid(row = 0, sticky = W)
     t6_entry = Entry(f4, width = 32)
     t6_entry.grid(row = 1)
 
@@ -344,7 +342,7 @@ def main_gui():
     button.grid(row = 8, sticky = W)
 
     # sida 6: Hantering av filhash
-    Label(f6, text = "Fil: ").grid(row = 0, sticky = W)
+    Label(f6, text = "Filväg: ").grid(row = 0, sticky = W)
     t9_entry = Entry(f6, width = 15)
     t9_entry.grid(row = 1, sticky = W)
 

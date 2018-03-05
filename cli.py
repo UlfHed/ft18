@@ -82,7 +82,7 @@ def tool_1():
         if  cho_tool1 == 1:
             while True:
                 try:
-                    start_path = input('Ange absolut filväg: ')
+                    start_path = input('Ange filväg: ')
                     break
                 except:
                     print('Var god ange filväg till den mapp som ska sökas.')
@@ -107,7 +107,7 @@ def tool_2():
         if cho_tool2 == 1:
             while True:
                 try:
-                    file_type = input('Ange filändelse inklusive punkt: ')
+                    file_type = input('Ange filändelse: ')
                     break
                 except:
                     print('Var god ange filändelse, t.ex. .pdf.')
@@ -115,7 +115,7 @@ def tool_2():
             print('Ange den mapp som ska sökas i.')
             while True:
                 try:
-                    start_path = input('Ange absolut filväg: ')
+                    start_path = input('Ange filväg: ')
                     break
                 except:
                     print('Var god ange filväg till den mapp som ska sökas.')
@@ -140,7 +140,7 @@ def tool_3():
         if cho_tool3 == 1:
             while True:
                 try:
-                    file_type = input('Ange filändelse inklusive punkt: ')
+                    file_type = input('Ange filändelse: ')
                     break
                 except:
                     print('Var god ange filändelse, t.ex. .pdf.')
@@ -148,7 +148,7 @@ def tool_3():
             print('Ange den mapp som ska sökas i.')
             while True:
                 try:
-                    start_path = input('Ange absolut filväg: ')
+                    start_path = input('Ange filväg: ')
                     break
                 except:
                     print('Var god ange filväg till den mapp som ska sökas.')
@@ -162,18 +162,19 @@ def tool_3():
 
             try:
                 files = ftlib.find_info_in_filetype(start_path, file_type, information)
+
+                if files != []:
+                    print('')
+                    print('String:', information, 'återfinns i följande filer: ')
+                    for i in files:
+                        print(i)
+                else:
+                    print('')
+                    print('Ingen träff!')
+
             except:
                 print('Kan ej konvertera och läsa ' + str(file_type) + '. Detta program nyttjar följande program för konvertering av de filtyper som stöds: ')
                 print('.pdf: ps2ASCII, .doc: Antiword, docx: docx2txt, odt: odt2txt.')
-
-            if files != []:
-                print('')
-                print('String:', information, 'återfinns i följande filer: ')
-                for i in files:
-                    print(i)
-            else:
-                print('')
-                print('Ingen träff!')
 
         elif cho_tool3 == 2:
                 break
@@ -187,7 +188,7 @@ def tool_4():
             print('Ange den mapp som ska sökas i.')
             while True:
                 try:
-                    start_path = input('Ange absolut filväg: ')
+                    start_path = input('Ange filväg: ')
                     break
                 except:
                     print('Var god ange filväg till den mapp som ska sökas.')
@@ -315,11 +316,13 @@ def tool_7():
                 except:
                     print('Ange fullständigt filnamn.')
 
-            text = ftlib.read_file_full(file_name)
-            hsh = ftlib.get_hash(text)
-            print('')
-            print(file_name + ' har följande md5 hashvärde: ')
-            print('md5 hash: ' + str(hsh))
+            try:
+                hsh = ftlib.get_hash(file_name)
+                print('')
+                print(file_name + ' har följande md5 hashvärde: ')
+                print('md5 hash: ' + str(hsh))
+            except:
+                print('Kan ej läsa', file_name)
 
         elif cho_tool7 == 2:
             print('Ange fullständigt filnamn.')
@@ -337,15 +340,16 @@ def tool_7():
                     break
                 except:
                     print('Ange ett md5 hashvärde.')
-
-            text = ftlib.read_file_full(file_name)
-            hsh = ftlib.get_hash(text)
-            if ftlib.eval_hash(hsh, known_hsh) == True:
-                print('')
-                print('True! Hashvärde av båda filer är identiska.')
-            elif ftlib.eval_hash(hsh, known_hsh) == False:
-                print('')
-                print('False! Hashvärde av båda filer är olika.')
+            try:
+                hsh = ftlib.get_hash(file_name)
+                if ftlib.eval_hash(hsh, known_hsh) == True:
+                    print('')
+                    print('True! Hashvärde av båda filer är identiska.')
+                elif ftlib.eval_hash(hsh, known_hsh) == False:
+                    print('')
+                    print('False! Hashvärde av båda filer är olika.')
+            except:
+                print('Kan ej läsa fil!')
 
         elif cho_tool7 == 3:
             print('Ange fullständigt filnamn.')
@@ -364,11 +368,9 @@ def tool_7():
                 except:
                     print('Ange fullständigt filnamn.')
 
-            text = ftlib.read_file_full(file_name)
-            hsh = str(ftlib.get_hash(text))
+            hsh = str(ftlib.get_hash(file_name))
             hashes = ftlib.read_file_list(file_name_hashes)
             found_hashes = []
-
             # Görs på detta vis med found_hashes till skäl av formatering.
             # Iteration över tomma rader kan leda till missgynnande skrivna rader.
             for i in hashes:

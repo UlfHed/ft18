@@ -69,16 +69,6 @@ def convert_docx(file_name):
     f.write(doc)
     f.close()
 
-def read_file_full(file_name):
-    """
-    Input: filnamn; den fil som ska läsas in.
-    Output: Filens hela innehåll i en string.
-    """
-    f = open(file_name, 'r')
-    content = f.read()
-    f.close()
-    return content
-
 def read_file_list(file_name):
     """
     Input: filnamn
@@ -243,18 +233,21 @@ def file_diff(filename_1, filename_2):
     result = [o for o in f1 if o in diff]
     return result
 
-def get_hash(text):
+def get_hash(file_name):
     """
-    Input: En string av text; En fils fullständiga innehåll i form av string.
-    Output: Ett md5 hash värde beroende på innehåll
-    referens:
-    https://stackoverflow.com/questions/37991475/comparing-hashes-and-evaluate-each-hash
+    Input: Filnman
+    Output: md5 hashvärde
+    Tidigare funktion att läsa hela filen till en string var för primitiv, kunde ej exempelvis hantera
+    pdf filer m.m. Denna funktion läser i omgångar av 4096 bitar, bör fungera för de flesta filer.
+    https://stackoverflow.com/questions/3431825/generating-an-md5-checksum-of-a-file
     """
     import hashlib
+    hash_md5 = hashlib.md5()
+    with open(file_name, "rb") as f:
+        for chunk in iter(lambda: f.read(4096), b""):
+            hash_md5.update(chunk)
+    return hash_md5.hexdigest()
 
-    a = hashlib.md5()
-    a.update(text.encode('utf-8'))
-    return a.hexdigest()
 
 def eval_hash(hsh1, hsh2):
     """
