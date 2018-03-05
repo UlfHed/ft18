@@ -73,17 +73,3 @@ används. Er uppgift är att skriva ut information om
 datorn som programmet körs på. Information som kan vara
 intressent är vilken hårdvara (ram, cpu, gpu etc) och
 mjukvara (operativsystem etc).
-
-
-### Automatisk generering av rapport
-- [ ] I det IT-forensiska arbetet ingår det nästan alltid
-rapportgenerering, dvs en rapport som innehåller
-information som kan vara intressant för tex en rättegång
-och eller en individ. Er uppgift är att användaren av
-programmet kan välja och markera filer som kan anses
-suspekta och spara dessa. Användaren ska också kunna
-skriva in egna kommentarer om hen så önskar. Rapporten
-skall sedan sparas i ett lämpligt format så som pdf eller
-dylikt, om bilder är markerade som suspekta så skall
-dessa visas som bilder i dokumentet och till sist ska
-användaren kunna bestämma var rapporten ska sparas.
