@@ -392,6 +392,7 @@ def tool_8():
             try:
                 sysinfo = ftlib.get_hardware()
                 print('')
+                print('Systemtid:                 ', sysinfo[9])
                 print('Användare:                 ', sysinfo[0])
                 print('Operativ system:           ', sysinfo[1])
                 print('Datornamn:                 ', sysinfo[2])
@@ -405,7 +406,8 @@ def tool_8():
                 # Om man ej har psutil
                 sysinfo = ftlib.get_hardware_less()
                 print('')
-                print('Användare:                 ', 'N/A')
+                print('Systemtid:                 ', sysinfo[7])
+                print('Användare:                 ', sysinfo[6])
                 print('Operativ system:           ', sysinfo[0])
                 print('Datornamn:                 ', sysinfo[1])
                 print('Utgåva:                    ', sysinfo[2])

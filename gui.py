@@ -20,7 +20,7 @@ def main_gui():
         textbox.insert(END, '\n' + '─█░▀▄▄▀█▄█▄▀' + '       Gustav Helgesson,')
         textbox.insert(END, '\n' + '▄▄█▄▄▄▄███▀' + '        Niklas Englund')
         textbox.insert(END, '\n' + '\nFöljande funktioner:')
-        textbox.insert(END, '\n' + '1. Utforska angiven mapp, inklusive undermappar. Erhållna filer kan begränsas till efter filtyp. Vidare begränsning kan göras där endast filer modifierade efter angivet datum visas.')
+        textbox.insert(END, '\n' + '1. Utforska angiven mapp, inklusive undermappar. Erhållna filer kan begränsas efter filtyp. Vidare begränsning kan göras där endast filer modifierade efter angivet datum visas.')
         textbox.insert(END, '\n' + '\n2. Sök fil innehållande del av angiven text information. Endast stöd för plaintext eller följande filtyper: .pdf, .doc, .docx, .odt. ')
         textbox.insert(END, '\n' + '\n3. Filkryptering. Skapa en krypterad kopia av angiven fil. Krypterad kopia erhåller filformat: .en. Endast .en filer kan dekrypteras, fil av samma namn med filformat: .de skapas.')
         textbox.insert(END, '\n' + '\n4. Jämför filer. Två filers innehåll jämförs med varandra, där vad som beträffas i första fil men ej i andra fil skrivs ut. För att få information om det omvända, byt plats på filnamn.')
@@ -197,6 +197,7 @@ def main_gui():
             clock_speed = str(sysinfo[7])
             ram = str(round(sysinfo[8] / 1000))
 
+            textbox.insert(END, '\n' + 'Systemtid:         ' + str(sysinfo[9]))
             textbox.insert(END, '\n' + 'Användare:         ' + sysinfo[0])
             textbox.insert(END, '\n' + 'Operativ system:   ' + sysinfo[1])
             textbox.insert(END, '\n' + 'Datornamn:         ' + sysinfo[2])
@@ -210,7 +211,8 @@ def main_gui():
             textbox.insert(END, '\n' + 'psutil för mer information.')
             sysinfo = ftlib.get_hardware_less()
 
-            textbox.insert(END, '\n' + 'Användare:         ' + 'N/A')
+            textbox.insert(END, '\n' + 'Systemtid:         ' + str(sysinfo[7]))
+            textbox.insert(END, '\n' + 'Användare:         ' + sysinfo[6])
             textbox.insert(END, '\n' + 'Operativ system:   ' + sysinfo[0])
             textbox.insert(END, '\n' + 'Datornamn:         ' + sysinfo[1])
             textbox.insert(END, '\n' + 'Utgåva:            ' + sysinfo[2])

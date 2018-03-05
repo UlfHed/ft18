@@ -182,6 +182,7 @@ def decrypt(content, code):
     Input: Krypterade strängar i lista, cypher i form av dictionary.
     Output: Lista av strängar.
     """
+    # byter plats på key och value i krypteringsdictionary. Se länk i en_de_crypt().
     decode_code = {value: key for key, value in code.items()}
     new_line = ''
     new_content = []
@@ -198,6 +199,8 @@ def en_de_crypt(file_name, mode):
     Output: Skriver fil antingen filnamn.en eller filnamn.de
     https://stackoverflow.com/questions/40062728/cipher-encoder-in-python-using-dictionaries
     """
+    # Försök till att hantera alla typer av symboler. Återfinns ej läst symbol som key
+    # Kan ej konvertering ske. Kräver try/except i kallelse till funktion annars haveri.
     code = {'3': 'N', 'j': 'B', 'w': 'l', 'f': 'Y', '0': 'h', 'A': 'u', 'h': 'n',
             'Å': ')', 'a': 'a', '<': 'z', 's': 'G', 'R': '>', '#': '&', 'Y': '7',
             'F': 'Ä', 'J': '1', 'Ö': 'k', 'M': 'd', 'd': 'ä', 'Z': 'F', '6': 'x',
@@ -263,21 +266,6 @@ def eval_hash(hsh1, hsh2):
     else:
         return False
 
-def create_hashset(hsh, file_name):
-    """
-    Input: hash värde, filnamn på hashset
-    Output: Skapar hashet av filnamn eller appenderar hash til fil.
-    Var hash är en rad.
-    """
-    if check_file_exist(file_name) == True:
-        f = open(file_name, 'a')
-        f.write(hsh + '\n')
-        f.close()
-    elif check_file_exist(file_name) == False:
-        f = open(file_name, 'w')
-        f.write(hsh + '\n')
-        f.close()
-
 def check_file_exist(file_name):
     """
     Input: Filnamn.
@@ -307,6 +295,7 @@ def get_hardware():
     mem_tot = int(memory[0] / 1024 / 1024)
     user = psutil.users()[0]
     c_user = user[0]
+    time_date = datetime.datetime.now()
 
     # output:
     user = c_user
@@ -330,21 +319,27 @@ def get_hardware():
     print('memory:           ')
     print('     total:       ', mem_tot, 'MB')
     """
-    return user, system, node, release, version, machine, processor, clock_speed, memory_tot
+    return user, system, node, release, version, machine, processor, clock_speed, memory_tot, time_date
 
 
 def get_hardware_less():
     """
     Endast inbyggda funktioner, ej psutil.
+    https://stackoverflow.com/questions/842059/is-there-a-portable-way-to-get-the-current-username-in-python
     """
     import platform
     import datetime
+    import getpass
+    import datetime
 
     # output:
+    user = getpass.getuser()
     system = platform.system()
     node = platform.node()
     release = platform.release()
     version = platform.version()
     machine = platform.machine()
     processor = platform.processor()
-    return system, node, release, version, machine, processor
+    time_date = datetime.datetime.now()
+
+    return system, node, release, version, machine, processor, user, time_date
