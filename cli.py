@@ -90,7 +90,7 @@ def tool_1():
             files = ftlib.directory_files(start_path)
             if files != []:
                 print('')
-                print('Följande filer funna: ')
+                print('Följande', len(files), 'filer funna: ')
                 for i in files:
                     print(i)
             else:
@@ -123,7 +123,7 @@ def tool_2():
             files = ftlib.find_filetype(start_path, file_type)
             if files != []:
                 print('')
-                print('Följande filer funna: ')
+                print('Följande', len(files), 'filer funna: ')
                 for i in files:
                     print(i)
             else:
@@ -165,7 +165,7 @@ def tool_3():
 
                 if files != []:
                     print('')
-                    print('String:', information, 'återfinns i följande filer: ')
+                    print('String:', information, 'återfinns i följande', len(files), 'filer: ')
                     for i in files:
                         print(i)
                 else:
@@ -220,7 +220,7 @@ def tool_4():
 
             if m_files != []:
                 print('')
-                print('Följande filer har modifierats efter ' + str(given_date) + '.')
+                print('Följande', len(files), 'filer har modifierats efter ' + str(given_date) + '.')
                 for i in m_files:
                     if i != None:   # Lista av modifierade filer, funktion returnerar None object för alla andra filer.
                         print(i)

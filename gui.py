@@ -56,9 +56,11 @@ def main_gui():
 
         if given_file_type == '':
             if given_date == '':
+                textbox.insert(END, '\nFöljande ' + str(len(files)) + ' filer återfinns i ' + start_path)
                 for i in files:
                     textbox.insert(END,'\n' + i)
             else:
+                textbox.insert(END, '\nFöljande ' + str(len(files)) + ' filer återfinns i ' + start_path)
                 for i in modified_files:
                     if i != None:
                         textbox.insert(END, '\n' + i)
@@ -68,11 +70,13 @@ def main_gui():
             files = ftlib.find_filetype(start_path, given_file_type)
 
             if given_date == '':
+                textbox.insert(END, '\nFöljande ' + str(len(files)) + ' filer återfinns i ' + start_path)
                 for i in files:
                     textbox.insert(END, '\n' + i)
             else:
                 for i in files:
                     modified_files_by_type.append(ftlib.modified_date(i, m_date))
+                textbox.insert(END, '\nFöljande ' + str(len(files)) + ' filer återfinns i ' + start_path)
                 for i in modified_files_by_type:
                     if i != None:
                         textbox.insert(END, '\n' + i)
