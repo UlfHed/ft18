@@ -152,7 +152,6 @@ def convert_date_sec(given_date):
     date_sec = date_sec.timestamp()
     return date_sec
 
-
 def encrypt(content, code):
     """
     Input: Lista av strängar som element, cypher i form av dictionary.
@@ -161,10 +160,8 @@ def encrypt(content, code):
     new_line = ''
     new_content = []
     for i in content:
-        for j in i:
-            new_line += code[j]
+        new_line = "".join(code.get(x, x) for x in i)
         new_content.append(new_line)
-        new_line = ''
     return new_content
 
 def decrypt(content, code):
@@ -177,10 +174,8 @@ def decrypt(content, code):
     new_line = ''
     new_content = []
     for i in content:
-        for j in i:
-            new_line += decode_code[j]
+        new_line = "".join(decode_code.get(x, x) for x in i)
         new_content.append(new_line)
-        new_line = ''
     return new_content
 
 def en_de_crypt(file_name, mode):
@@ -195,7 +190,7 @@ def en_de_crypt(file_name, mode):
             'Å': ')', 'a': 'a', '<': 'z', 's': 'G', 'R': '>', '#': '&', 'Y': '7',
             'F': 'Ä', 'J': '1', 'Ö': 'k', 'M': 'd', 'd': 'ä', 'Z': 'F', '6': 'x',
             'X': 'X', 't': 't', 'Ä': 'I', '?': 'e', 'o': 'w', '&': 'y', 'k': 'W',
-            'K': 'H', 'e': 'K', '!': 'Z', 'y': 'M', 'H': '¤', 'r': '/', ')': 'H',
+            'K': '|', 'e': 'K', '!': 'Z', 'y': 'M', 'H': '¤', 'r': '/', ')': 'H',
             '4': '4', 'Q': '8', 'P': 'v', 'L': '3', 'G': 'r', '¤': 'b', 'S': 'ö',
             'v': 'T', 'D': '?', 'ö': 'g', 'u': 'Å', '7': 'j', 'B': 'f', 'I': 'R',
             'z': 'A', '2': 'Q', 'l': '6', '5': '5', 'p': 'c', 'V': 'i', '9': 'Ö',
@@ -207,18 +202,30 @@ def en_de_crypt(file_name, mode):
             '-': '~', '*': 'ø', '"': 'æ', '\t': '\t', '\\': '\\'}
 
     if mode == 'encrypt':
-        content = read_file_list(file_name)
+        content = read_file_full(file_name)
         new_content = encrypt(content, code)
         new_file_name = file_name +'.en'
-        write_file_list(new_file_name, new_content)
+        write_file_full(new_file_name, new_content)
 
     elif mode == 'decrypt':
-        content = read_file_list(file_name)
+        content = read_file_full(file_name)
         new_content = decrypt(content, code)
         if '.en' in file_name:
             file_name = file_name.replace('.en', '')
         new_file_name = file_name + '.de'
-        write_file_list(new_file_name, new_content)
+        write_file_full(new_file_name, new_content)
+
+def read_file_full(file_name):
+    f = open(file_name, 'r')
+    content = f.read()
+    f.close()
+    return content
+
+def write_file_full(file_name, content):
+    f = open(file_name, 'w')
+    for i in content:
+        f.write(i)
+    f.close()
 
 def file_diff(filename_1, filename_2):
     """
