@@ -198,7 +198,7 @@ def tool_4():
                 try:
                     given_date = input('Datum: ')
                     if re.match(r'[0-3][0-9].[0-1][0-9].20\d{2}', given_date) != None:
-                        # Beränsar dagar till ^31 och månader ^12.
+                        # Begränsar dagar till ^31 och månader ^12.
                         if int(given_date[0] + given_date[1]) < 32:
                             if int(given_date[3] + given_date[4]) < 13:
                                 break
@@ -367,21 +367,24 @@ def tool_7():
                     break
                 except:
                     print('Ange fullständigt filnamn.')
-
-            hsh = str(ftlib.get_hash(file_name))
-            hashes = ftlib.read_file_list(file_name_hashes)
-            found_hashes = []
-            # Görs på detta vis med found_hashes till skäl av formatering.
-            # Iteration över tomma rader kan leda till missgynnande skrivna rader.
-            for i in hashes:
-                if ftlib.eval_hash(hsh, i) == True:
-                    found_hashes.append(i)
-            if found_hashes != []:
+            try:
+                hsh = str(ftlib.get_hash(file_name))
+                hashes = ftlib.read_file_list(file_name_hashes)
+                found_hashes = []
+                # Görs på detta vis med found_hashes till skäl av formatering.
+                # Iteration över tomma rader kan leda till missgynnande skrivna rader.
+                for i in hashes:
+                    if ftlib.eval_hash(hsh, i) == True:
+                        found_hashes.append(i)
+                if found_hashes != []:
+                    print('')
+                    print('md5 hashvärde: ' + hsh + ' av ' + file_name + ' ÅTERFINNS i ' + file_name_hashes + '.')
+                else:
+                    print('')
+                    print('md5 hashvärde: ' + hsh + ' av ' + file_name + ' återfinns EJ! i ' + file_name_hashes + '.')
+            except:
                 print('')
-                print('md5 hashvärde: ' + hsh + ' av ' + file_name + ' ÅTERFINNS i ' + file_name_hashes + '.')
-            else:
-                print('')
-                print('md5 hashvärde: ' + hsh + ' av ' + file_name + ' återfinns EJ! i ' + file_name_hashes + '.')
+                print('Kan ej läsa fil!')
 
         elif cho_tool7 == 4:
             break
